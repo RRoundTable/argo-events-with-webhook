@@ -14,6 +14,8 @@ argo-workflows:
 	helm dependency build charts/argo-workflows
 	helm install argo-workflows charts/argo-workflows
 
+tunnel:
+	minikube tunnel -p $(PROFILE_NAME)
 
 
 finalize:
