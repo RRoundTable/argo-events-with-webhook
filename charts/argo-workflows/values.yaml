@@ -1,0 +1,26 @@
+# see for more details:
+# https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/values.yaml
+argo-workflows:
+  server:
+    extraArgs:
+      - --auth-mode=server
+    serviceType: LoadBalancer
+    port: 2746
+
+  useDefaultArtifactRepo: true
+  artifactRepository:
+    # -- archive the main container logs as an artifact
+    archiveLogs: false
+    # -- store artifact in a S3-compliant object store
+    # @default -- See [values.yaml]
+    s3:
+      # insecure will disable TLS. Primarily used for minio installs not configured with TLS.
+      insecure: true
+      bucket: ml-pipeline-registry
+      endpoint: minio.default.svc.cluster.local:9000
+      accessKeySecret:
+        name: minio     # secrets name
+        key: accesskey  # secrets key name
+      secretKeySecret:
+        name: minio
+        key: secretkey
