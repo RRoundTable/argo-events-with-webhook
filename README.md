@@ -116,15 +116,31 @@ Create sensor.
 kubectl apply -f webhook-sensor.yaml
 ```
 
-minikube tunneling to port-forward svc/argo-workflow
+Port-forward `svc/argo-workflows`.
 
 ```
-make tunnel
+kubectl port-forward svc/argo-workflows 2746:2746
 ```
 
 Click `localhost:2746/event-flow`. You can see event flow from event source to sensor
 
 <img width="872" alt="image" src="https://user-images.githubusercontent.com/27891090/196950734-18f049ce-0c74-4392-bd08-6e12cda71baa.png">
+
+### ClusterRole Binding
+
+Create cluster role binding for argo-events to trigger workflows.
+```
+kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default || true
+```
+
+In `webhook-sensor.yaml` use `default` serviceaccount.
+
+```
+spec:
+  template:
+    serviceAccountName: default
+```
+
 
 
 ## Reference
