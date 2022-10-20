@@ -116,16 +116,6 @@ Create sensor.
 kubectl apply -f webhook-sensor.yaml
 ```
 
-Port-forward `svc/argo-workflows`.
-
-```
-kubectl port-forward svc/argo-workflows 2746:2746
-```
-
-Click `localhost:2746/event-flow`. You can see event flow from event source to sensor
-
-<img width="872" alt="image" src="https://user-images.githubusercontent.com/27891090/196950734-18f049ce-0c74-4392-bd08-6e12cda71baa.png">
-
 ### ClusterRole Binding
 
 Create cluster role binding for argo-events to trigger workflows.
@@ -141,6 +131,32 @@ spec:
     serviceAccountName: default
 ```
 
+### Trigger
+
+port-forward webhook eventsource.
+
+```
+kubectl port-forward svc/webhook-eventsource-svc 12000:12000
+```
+
+Requset
+
+```
+curl -d '{"message":"this is my first webhook"}' -H "Content-Type: application/json" -X POST http://localhost:12000/example
+```
+
+```
+success
+```
+
+
+Port-forward `svc/argo-workflows`.
+
+```
+kubectl port-forward svc/argo-workflows 2746:2746
+```
+
+Click `localhost:2746/event-flow`. You can see event flow from event source to special-trigger.
 
 
 ## Reference
