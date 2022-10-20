@@ -111,7 +111,7 @@ webhook   64s
 ### Create Sensor
 
 ```
-kubectl apply -f sensor.yaml
+kubectl apply -f webhook-sensor.yaml
 ```
 
 
