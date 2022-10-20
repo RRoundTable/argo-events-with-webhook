@@ -110,9 +110,19 @@ webhook   64s
 
 ### Create Sensor
 
+Create sensor.
+
 ```
 kubectl apply -f webhook-sensor.yaml
 ```
+
+minikube tunneling to port-forward svc/argo-workflow
+
+```
+make tunnel
+```
+
+Click `localhost:2746/event-flow`. You can see event flow from event source to sensor
 
 <img width="872" alt="image" src="https://user-images.githubusercontent.com/27891090/196950734-18f049ce-0c74-4392-bd08-6e12cda71baa.png">
 
