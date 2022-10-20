@@ -158,6 +158,7 @@ kubectl port-forward svc/argo-workflows 2746:2746
 
 Click `localhost:2746/event-flow`. You can see event flow from event source to special-trigger.
 
+<img width="667" alt="image" src="https://user-images.githubusercontent.com/27891090/196955753-fa8c8f60-6265-4dd7-8385-e01286147396.png">
 
 ## Reference
 
