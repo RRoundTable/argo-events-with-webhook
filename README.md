@@ -198,10 +198,25 @@ https://localhost.run/docs/
 
 Now GitHub webhook can request to your localhost (`<IP>`)
 
-```
+We will create repository webhook.
+
+Click a repository `Settings` button.
+
+Click a `Webhooks` button.
+
+Enter Payload URL `<IP>` created by localhost.run.
+
+And select `Content type` as `application/json`.
+
+Now monitor `localhost:2746/event-flow`
+
+ 
+
+
 
 ## Reference
 
 [1] [Argo Events Installation](https://argoproj.github.io/argo-events/installation/)
 [2] [Using SSH and localhost.run to test GitHub webhooks locally](https://andrewlock.net/using-ssh-and-localhost-run-to-test-github-webhooks-locally/)
 [3] [localhost.run](https://localhost.run/docs/)
+[4] [About webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks)
