@@ -114,6 +114,7 @@ webhook   64s
 kubectl apply -f webhook-sensor.yaml
 ```
 
+<img width="872" alt="image" src="https://user-images.githubusercontent.com/27891090/196950734-18f049ce-0c74-4392-bd08-6e12cda71baa.png">
 
 
 ## Reference
