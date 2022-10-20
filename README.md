@@ -1,6 +1,7 @@
 # argo-events-with-webhook
 
 ## Prerequisite
+- [Helm](https://helm.sh/docs/intro/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
@@ -45,4 +46,77 @@ minikube start driver=docker --profile argo-events
 🏄  끝났습니다! kubectl이 "argo-events" 클러스터와 "default" 네임스페이스를 기본적으로 사용하도록 구성되었습니다.
 
 ```
+
+### Deploy Argo Events
+
+```
+make argo-events
+```
+
+Check pod
+```
+kubectl get pod
+```
+
+```
+NAME                                                  READY   STATUS    RESTARTS   AGE
+argo-events-controller-manager-6cdfb6b776-4kwqb       1/1     Running   0          39s
+```
+
+
+### Deploy Argo Worfklows
+
+
+```
+make argo-worfklows
+```
+
+Check pod
+```
+kubectl get pod
+```
+
+```
+NAME                                                  READY   STATUS    RESTARTS   AGE
+argo-workflows-server-58797d8d5f-hrv7b                1/1     Running   0          90s
+argo-workflows-workflow-controller-6b59d8f568-fjk6s   1/1     Running   0          90s
+```
+
+### Create EventBus
+
+```
+kubectl apply -f event-bus.yaml
+```
+
+
+### Create Webhook EventSource
+
+Create webhook eventsource.
+
+```
+kubectl apply -f webhook-eventsource.yaml
+```
+
+Check eventsource(CRD).
+
+```
+kubectl get eventsource
+```
+
+```
+NAME      AGE
+webhook   64s
+```
+
+### Create Sensor
+
+```
+kubectl apply -f sensor.yaml
+```
+
+
+
+## Reference
+
+[1] [Argo Events Installation](https://argoproj.github.io/argo-events/installation/)
 
