@@ -4,7 +4,7 @@ metadata:
   name: webhook
 spec:
   template:
-    serviceAccountName: default 
+    serviceAccountName: default
   dependencies:
     - name: test-dep
       eventSourceName: webhook
@@ -19,23 +19,23 @@ spec:
               apiVersion: argoproj.io/v1alpha1
               kind: Workflow
               metadata:
-                name: special-trigger
+                generateName: special-trigger-
               spec:
-                entrypoint: whalesay
+                entrypoint: argosay
                 arguments:
                   parameters:
                     - name: message
                       # the value will get overridden by event payload from test-dep
                       value: hello world
                 templates:
-                  - name: whalesay
+                  - name: argosay
                     inputs:
                       parameters:
                         - name: message
                     container:
-                      image: docker/whalesay:latest
-                      command: [cowsay]
-                      args: ["{{inputs.parameters.message}}"]
+                      image: argoproj/argosay:v2
+                      command: [/argosay]
+                      args: ["echo", "{{inputs.parameters.message}}"]
           parameters:
             - src:
                 dependencyName: test-dep
